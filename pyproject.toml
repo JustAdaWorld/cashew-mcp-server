@@ -1,0 +1,56 @@
+[project]
+name = "cashew-llm"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "black>=25.1.0",
+    "python-dotenv>=1.1.0",
+    "requests>=2.32.3",
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+isort.known-first-party = ["app"]
+select = [
+    "E", "F", "W",  # Default flake8
+    "I",  # isort
+    # "UP",  # pyupgrade
+    # "ANN",  # annotations
+    "S",  # flake8-bandit security
+    "COM",  # flake8-commas
+    "B",  # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "T10",  # flake8-debugger
+    # "EM",  # flake8-errmsg
+    # "RET",  # flake8-return
+    # "SIM",  # flake8-simplify
+    "PTH",  # flake8-use-pathlib
+    # "RUF",  # ruff-specific
+    # "ASYNC",  # flake8-async
+]
+# Ignoring docstring requirements and type annotations
+ignore = [
+    "B008", # flake8-bugbear
+    "D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107",  # Missing docstrings
+    "ANN001", "ANN002", "ANN003", "ANN201", "ANN202", "ANN204", "ANN205", "ANN206",  # Missing type annotations
+]
+
+[tool.flake8]
+max-line-length = 88
+max-comment-length = 120
