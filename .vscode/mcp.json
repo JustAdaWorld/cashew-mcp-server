@@ -1,0 +1,13 @@
+{
+    "servers": {
+        "cashew-mcp-server": {
+            "type": "stdio",
+            "command": "/Users/yash/Developer/cashew-mcp/.venv/bin/python",
+            "args": [
+                "/Users/yash/Developer/cashew-mcp/cashew_mcp_server.py",
+                "--db-path",
+                "/Users/yash/Developer/cashew-mcp/db.sqlite"
+            ]
+        }
+    }
+}

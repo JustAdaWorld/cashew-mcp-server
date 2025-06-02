@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "cashew-expense-tracker": {
+      "command": "uv",
+      "args": ["run", "python", "cashew_mcp_server.py"],
+      "cwd": "/Users/yash/Developer/cashew-mcp",
+      "env": {}
+    }
+  }
+}
