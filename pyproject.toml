@@ -1,18 +1,17 @@
 [project]
-name = "cashew-llm"
+name = "cashew-mcp-server"
 version = "0.1.0"
-description = "Add your description here"
+description = "A model-context-protocol server for Cashew Expense Tracker"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "black>=25.1.0",
-    "python-dotenv>=1.1.0",
-    "requests>=2.32.3",
+    "mcp>=1.0.0",
 ]
 
 [tool.black]
 line-length = 88
-target-version = ["py312"]
+target-version = ["py313"]
 include = '\.pyi?$'
 exclude = '''
 /(
@@ -25,7 +24,7 @@ exclude = '''
 
 [tool.ruff]
 line-length = 88
-target-version = "py312"
+target-version = "py313"
 isort.known-first-party = ["app"]
 select = [
     "E", "F", "W",  # Default flake8
@@ -50,7 +49,3 @@ ignore = [
     "D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107",  # Missing docstrings
     "ANN001", "ANN002", "ANN003", "ANN201", "ANN202", "ANN204", "ANN205", "ANN206",  # Missing type annotations
 ]
-
-[tool.flake8]
-max-line-length = 88
-max-comment-length = 120
