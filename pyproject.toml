@@ -5,8 +5,13 @@ description = "A model-context-protocol server for Cashew Expense Tracker"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "fastmcp>=4.1,<5",
+    "uvicorn>=0.30",
+]
+
+[dependency-groups]
+dev = [
     "black>=25.1.0",
-    "mcp>=1.0.0",
 ]
 
 [tool.black]

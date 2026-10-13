@@ -1,0 +1,22 @@
+services:
+  mcp:
+    image: ghcr.io/justadaworld/cashew-mcp-server:0.2.0   # pinned tag or @sha256 digest. Never :latest
+    restart: unless-stopped
+    env_file: .env                     # chmod 600. Login settings only
+    ports:
+      - "127.0.0.1:8100:8000"          # localhost only: the Cloudflare tunnel is the way in
+    volumes:
+      - ./data:/data:ro                # the Cashew backup, read-only. Not backed up
+      - state:/state                   # login state. Not backed up
+    mem_limit: 512m
+    cpus: 0.5
+    pids_limit: 256
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  state:

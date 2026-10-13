@@ -10,11 +10,12 @@ and includes prompts for common data analysis tasks.
 import sqlite3
 import argparse
 import os
+import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 from datetime import datetime
 
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
 from pydantic import BaseModel
 
 
@@ -538,32 +539,47 @@ def main() -> int:
     db_path: str = DEFAULT_DB_PATH  # Default to test database
     if args.db_path:
         db_path = args.db_path
-        print(f"Using database from command line: {db_path}", flush=True)
+        print(
+            f"Using database from command line: {db_path}", file=sys.stderr, flush=True
+        )
     elif args.use_main_db:
         db_path = MAIN_DB_PATH
-        print(f"Using main database: {db_path}", flush=True)
+        print(f"Using main database: {db_path}", file=sys.stderr, flush=True)
     elif os.getenv(ENV_DB_PATH_KEY) is not None:
         db_path = os.getenv(ENV_DB_PATH_KEY, DEFAULT_DB_PATH)
         print(
             f"Using database from environment variable {ENV_DB_PATH_KEY}: {db_path}",
+            file=sys.stderr,
             flush=True,
         )
     else:
-        print(f"Using default database: {db_path}", flush=True)
+        print(f"Using default database: {db_path}", file=sys.stderr, flush=True)
 
-    print(f"Initializing Cashew MCP Server with database: {db_path}", flush=True)
+    print(
+        f"Initializing Cashew MCP Server with database: {db_path}",
+        file=sys.stderr,
+        flush=True,
+    )
 
     try:
         init_database(db_path)
-        print(f"Successfully connected to database: {db_path}", flush=True)
+        print(
+            f"Successfully connected to database: {db_path}",
+            file=sys.stderr,
+            flush=True,
+        )
 
         # Print available tables for debugging
         if db is not None:
             table_names = db.get_table_names()
-            print(f"Available tables: {', '.join(table_names)}", flush=True)
+            print(
+                f"Available tables: {', '.join(table_names)}",
+                file=sys.stderr,
+                flush=True,
+            )
 
     except Exception as e:
-        print(f"Failed to initialize database: {e}", flush=True)
+        print(f"Failed to initialize database: {e}", file=sys.stderr, flush=True)
         return 1
 
     # Run the MCP server
