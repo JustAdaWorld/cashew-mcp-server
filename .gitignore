@@ -15,3 +15,5 @@ wheels/
 # database
 *.sqlite*
 *.db
+
+!.env.example

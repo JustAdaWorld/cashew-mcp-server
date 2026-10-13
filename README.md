@@ -40,6 +40,16 @@ Use a custom database path:
 uv run python cashew_mcp_server.py --db-path /path/to/your/database.sqlite
 ```
 
+### Running as a Hosted Server (HTTP + Docker)
+
+Alongside stdio, the server can run over Streamable HTTP behind a GitHub login, packaged as a container (`Dockerfile`, `compose.yml`). The entry point is `app.py`:
+
+```bash
+uvicorn app:create_app --factory --host 0.0.0.0 --port 8000
+```
+
+It requires `CASHEW_DB_PATH`, `MCP_BASE_URL`, `MCP_GITHUB_CLIENT_ID`, `MCP_GITHUB_CLIENT_SECRET` and `MCP_ALLOWED_GITHUB_USERS` (see `.env.example`), and serves MCP at `/mcp` and a health check at `/health`. See [DEPLOY.md](DEPLOY.md) for running it, connecting Claude and releasing new versions.
+
 ### MCP Client Integration
 
 #### Claude Desktop
